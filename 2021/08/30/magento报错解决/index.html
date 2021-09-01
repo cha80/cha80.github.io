@@ -469,7 +469,10 @@
 <p>删掉重复的值只保留一个库存记录</p>
 <p> 来源<br> <a target="_blank" rel="noopener" href="https://magento.stackexchange.com/questions/228428/item-with-the-same-id-860-already-exists">https://magento.stackexchange.com/questions/228428/item-with-the-same-id-860-already-exists</a></p>
 <p> 另外记录一下mysql的备份命令<br> 在终端运行 mysqldump -uroot -p  数据库名&gt; 要保存的路径下要生成sql文件<br> 例如<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -uroot -p mydb&gt;/tmp/mydb.sql</span><br><span class="line"></span><br></pre></td></tr></table></figure><br>其中root是当前数据库用户名  之后会要求输入数据库root账户的密码；耐心等待备份完成<br>mysql还原命令<br>mysql  -uroot -p 要还原的数据库&lt;/tmp/mydb.sql<br>还原之前需要在mysql数据库里<br>用drop database ‘要还原的数据库’ sql语句删掉数据库然后重建一个<br>create databse ‘数据库名’；</p>
-
+<br> 最近又了解到windows server活动目录的概念。
+		    也记一下   
+		    同一个局域网内。使用windows server 带的active directory 可以控制域内其它电脑的设置
+		    只需要创建域 。各个局域网的电脑用域账号登陆就受活动目录的约束   首先需要在window server 主机上用 dcpromo命令安装活动目录功能
                 
             </div>
             <hr/>
