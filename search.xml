@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>magento的优化方向指南</title>
+      <link href="/2021/09/07/magento%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91%E6%8C%87%E5%8D%97/"/>
+      <url>/2021/09/07/magento%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E5%90%91%E6%8C%87%E5%8D%97/</url>
+      
+        <content type="html"><![CDATA[<p>magento 作为一个可以扩展功能的开源电商系统(adobe公司旗下的产品）。可以同过安装不同的插件使网站达到满足自身业务需求。<br>本人也是做过5个月的magento的维护优化人员就从以下几个角度谈magento的优化完善方向。<br>[toc] </p><h3 id="1-mangento的产品搜索问题"><a href="#1-mangento的产品搜索问题" class="headerlink" title="1.  mangento的产品搜索问题"></a>1.  mangento的产品搜索问题</h3><p>一个电商网站最基本的功能就是要搜索产品准确。不能有任何偏差。而magento自带的mysql搜索引擎十分的不准确。需要更换elasticsearch 搜索引擎进行产品搜索、</p><h3 id="2-magento的在线客服问题"><a href="#2-magento的在线客服问题" class="headerlink" title="2.   magento的在线客服问题"></a>2.   magento的在线客服问题</h3><p>  一个成熟且完善的电商系统需要具备相应的客服系统。能与客户直接的在网站上沟通。能让客户直接找到销售者。这里推荐可以用livechat插件等第三方在线交流工具提供商、或者是一个可以唤起社交软件的插件。</p><h3 id="3-magento的结算方式"><a href="#3-magento的结算方式" class="headerlink" title="3. magento的结算方式"></a>3. magento的结算方式</h3><p>  这个可以直接用magento自带的PayPal进行结算。有国外身份的可以使用stripe支付提供商的支付网关。</p><h3 id="4-magento的缓存系统"><a href="#4-magento的缓存系统" class="headerlink" title="4. magento的缓存系统"></a>4. magento的缓存系统</h3><p>  建议将magento自带的缓存系统替换成redis 加上一个varnish这样可以使网站的访问速度更快。</p><h3 id="5-magento的物流模块"><a href="#5-magento的物流模块" class="headerlink" title="5. magento的物流模块"></a>5. magento的物流模块</h3><p> magento自带物流模块十分落后。可以通过安装一些第三方插件改善物流模块的落后。</p><h3 id="6-有些必须的magento依赖的软件会经常崩溃问题"><a href="#6-有些必须的magento依赖的软件会经常崩溃问题" class="headerlink" title="6. 有些必须的magento依赖的软件会经常崩溃问题"></a>6. 有些必须的magento依赖的软件会经常崩溃问题</h3><p>  linux有个crontab功能 此功能可以定时运行shell脚本。可以通过把相关的软件重启shell命令写在一个脚本里面然后添加到crontab计划任务里面设置为每天定时执行</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>magento报错解决</title>
+      <link href="/2021/08/30/magento%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3/"/>
+      <url>/2021/08/30/magento%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3/</url>
+      
+        <content type="html"><![CDATA[<p>今天记录以下有关于magento id重复引起报错的解决办法<br>以下是截图<br> <img src="/2021/08/30/magento%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3/%E6%8A%A5%E9%94%99%E5%9B%BE.png" alt="id重复报错图2"><br> 先用ssh客户端连接Linux服务器<br> 使用mysql 命令登录到数据库<br> 使用use 数据库名 选择magento的数据库<br> 运行 ``` bash<br>SELECT * FROM cataloginventory_stock_item  where product_id=’报错的id名’ ;</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">找到重复的id值 。然后运行</span><br><span class="line">&#96;&#96;&#96; bash</span><br><span class="line">delete FROM cataloginventory_stock_item  where item_id&#x3D;&#39;最前面的一个id值&#39; ;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>删掉重复的值只保留一个库存记录</p><p> 来源<br> <a href="https://magento.stackexchange.com/questions/228428/item-with-the-same-id-860-already-exists">https://magento.stackexchange.com/questions/228428/item-with-the-same-id-860-already-exists</a></p><p> 另外记录一下mysql的备份命令<br> 在终端运行 mysqldump -uroot -p  数据库名&gt; 要保存的路径下要生成sql文件<br> 例如<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -uroot -p mydb&gt;/tmp/mydb.sql</span><br><span class="line"></span><br></pre></td></tr></table></figure><br>其中root是当前数据库用户名  之后会要求输入数据库root账户的密码；耐心等待备份完成<br>mysql还原命令<br>mysql  -uroot -p 要还原的数据库&lt;/tmp/mydb.sql<br>还原之前需要在mysql数据库里<br>用drop database ‘要还原的数据库’ sql语句删掉数据库然后重建一个<br>create databse ‘数据库名’；</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>magento2-elasticsearch</title>
+      <link href="/2021/08/19/magento2-elasticsearch/"/>
+      <url>/2021/08/19/magento2-elasticsearch/</url>
+      
+        <content type="html"><![CDATA[<p>今天记一下magento2如何连接使用elasticsearch 搜索引擎替换掉MySQL使magento 的搜索结果更准确<br>先用ssh客户端连接到远程服务器<br>然后先安装jdk 环境 elasticsearch 依赖于java运行<br>centos 下<br>先搜索jdk安装包</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$  yum search java | grep jdk</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>从以下列表中选取一个版本进行安装<br><img src="/2021/08/19/magento2-elasticsearch/jdk.PNG" alt="jdk图2"><br>比如选jdk1.8</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$  yum install java-1.8.0-openjdk.x86_64</span><br></pre></td></tr></table></figure><p>ubuntu 下</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt  install openjdk</span><br></pre></td></tr></table></figure><p>安装elasticsearch<br>centos</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum   install elasticseach</span><br></pre></td></tr></table></figure><p>ubuntu </p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt  install elasticseach</span><br></pre></td></tr></table></figure><p>然后找到elasticsearch.yml这个文件<br>使用vim命令编辑它<br>取消掉下列注释<br><img src="/2021/08/19/magento2-elasticsearch/es1.PNG" alt="es1图2"><br><img src="/2021/08/19/magento2-elasticsearch/es2.PNG" alt="es2图2"><br>然后使用以下命令将elasticsearch 设置成开机运行并启动</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$  systemctl <span class="built_in">enable</span> elasticsearch  </span><br><span class="line"></span><br><span class="line">service elasticsearch start</span><br></pre></td></tr></table></figure><p>在magento（2.3版本以上）后台的store-&gt;configuration-&gt;catalog-选项卡下找到搜索引擎一栏改成elasticsearch 这样就可以了<br>如果网页有提示no alive node in your cluster  可以重启elasticsearch服务解决问题</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ service elasticsearch restart</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>magento2</title>
+      <link href="/2021/07/22/magento/"/>
+      <url>/2021/07/22/magento/</url>
+      
+        <content type="html"><![CDATA[<p>今天记一下magento 一些实用的自定义技巧<br>1.屏蔽多属性产品的价格差显示<br>–这只有在属性为dropdown 时候才会显示<br>首先连接xshell 服务器<br>使用以下shell 命令 查找这个js文件<br> <code>bash $  find -name &#39;configurable.js&#39; -ls</code><br> <img src="/2021/07/22/magento/price.png" alt="图1"><br> 然后找到图中的Options[i].lable= ‘’ + 把后面的代码注释掉一直到这个小括号结束<br> 以上就是怎么去除magento官方默认的价格差设定<br> <img src="/2021/07/22/magento/price1.png" alt="configurable.js图2"><br>  来源 <a href="https://community.magento.com/t5/Magento-2-x-Programming/Show-actual-price-for-each-option-in-dropdown-for-configurable/td-p/406916">https://community.magento.com/t5/Magento-2-x-Programming/Show-actual-price-for-each-option-in-dropdown-for-configurable/td-p/406916</a></p><p> 2 .如何在magento2的产品详情页价格的下方添加自定义模块 </p><p> 首先使用以下命令找到catalog_product_view.xml这个文件<br> <code>bash $  find -name &#39;catalog_product_view.xml&#39; -ls</code><br> 路径如下在wendor文件夹属于magneto catolog这个模块下面的xml文件<br>  <img src="/2021/07/22/magento/price2.png" alt="图1.2"><br>  magento的根路径/vendor/magento/module-catalog/view/frontend/layout/catalog_product_view.xml<br>  在body 标签之后添加以下配置<br>   <referenceContainer name="product.info.main"><br>            <block class="Magento\Framework\View\Element\Template" name="custom.text" template="Magento_Catalog::view/customtext.phtml" after="product.info.price"/><br>        </referenceContainer><br>如图<br> <img src="/2021/07/22/magento/price4.png" alt="图2"><br>然后在自己用的主题下面新建一个phtml文件，名称要与block里面的template 对应<br> <img src="/2021/07/22/magento/price3.png" alt="图3"><br>然后只需要像编辑phtml并加入自己想要加入的模块。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>xshell连接阿里云服务器</title>
+      <link href="/2021/05/14/xshell%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+      <url>/2021/05/14/xshell%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
+      
+        <content type="html"><![CDATA[<p>记录如何用xshell 客户端连接 远程的阿里云服务器</p><ol><li>先去官网下载xshell 网址 用邮箱注册一个账号个人使用免费 <a href="https://www.netsarang.com/en/free-for-home-school/">https://www.netsarang.com/en/free-for-home-school/</a></li><li>打开阿里云官网 查看服务器公网ip</li><li>打开xshell 选择新建 填写主机地址 端口选22；<br><img src="/2021/05/14/xshell%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/232.PNG" alt="xshell连接图"><br>点击连接输入服务器的用户名和密码 可以是root用户<br>这样就大功告成了 （阿里云的22端口一般都是开启状态）<br><img src="/2021/05/14/xshell%E8%BF%9E%E6%8E%A5%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/213.PNG" alt="xshell连接图"><br>阿里云可以通过更换系统实现更换自定义镜像进行还原系统<br>（需要先停止实例）</li></ol>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>linuxdaily</title>
+      <link href="/2021/04/20/linuxdaily/"/>
+      <url>/2021/04/20/linuxdaily/</url>
+      
+        <content type="html"><![CDATA[<p>今天发现centos 7下<br>使用composer（php 包管理工具） 使用非root用户会用文件权限问题<br>解决办法<br><code>bash  chmod -r 777 &lt;文件名&gt;</code><br>用以上命令获取对文件的控制权<br>另外阿里云安装Prometheus监控时要从安全组里开启9090端口</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone = public --add-port=9090/tcp --permanent </span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure><p>要在服务器开启端口并重新载入配置</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -l |grep ^rc|awk <span class="string">&#x27;&#123;print $2&#125;&#x27;</span> |sudo xargs dpkg -P</span><br></pre></td></tr></table></figure><p>清除卸载残留数据</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg --list|grep mysql</span><br></pre></td></tr></table></figure><p>查看mysql相关的安装程序</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add-apt-repository ppa:ondrej/php</span><br></pre></td></tr></table></figure><p>安装php时添加ppa源<br>然后 </p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get upgrade</span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure><p>可选择不同版本的php 包括php7.0 7.1 7.3 7.4 甚至8.0<br>开源电商系统magento必备的php扩展插件<br>magento2.4需要ElasticSearch环境<br>‘php-curl’ ‘php-gd’ ‘php-intl’ ‘php-mbstring’ ‘php-soap’ ‘php-zip’ ‘php-pdo_mysql’</p><p><img src="/2021/04/20/linuxdaily/centos1.jpg" alt="php.ini 配置图"></p><p>php pdo_mysql插件连接数据库设置 也在php.ini 中<br>pdo_mysql.default.socket= mysql.sock 的绝对路径</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Ubuntu</title>
+      <link href="/2021/03/20/Ubuntu/"/>
+      <url>/2021/03/20/Ubuntu/</url>
+      
+        <content type="html"><![CDATA[<hr><p>title: 星期六 ubuntu<br>date: 2021-03-20 18:47:34<br>tags:</p><hr><p><img src="/2021/03/20/Ubuntu/sc1.png" alt="alt"></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure><p>以上apt-get ubuntu 镜像源本人亲测可用<br>方法 <code>bash $ sudo vim /etc/apt/sources.list  </code></p><p>在前面加# 注释掉原来的镜像源<br>替换成国内的镜像源可解决下载速度慢<br><code>bash $ hexo -s hexo clean  hexo d or hexo deploy </code><br>hexo s 启动本地服务器 localhost:4000 or 127.0.0.1:4000<br>hexo d 生成一个public文件夹  打包发布成浏览器可执行的html文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo -s    </span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>第二篇博客</title>
+      <link href="/2021/03/15/%E7%AC%AC%E4%BA%8C%E7%AF%87%E5%8D%9A%E5%AE%A2/"/>
+      <url>/2021/03/15/%E7%AC%AC%E4%BA%8C%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+      
+        <content type="html"><![CDATA[<p>敬请期待</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>3.15</title>
+      <link href="/2021/03/15/3-15/"/>
+      <url>/2021/03/15/3-15/</url>
+      
+        <content type="html"><![CDATA[<h3 id="星期一"><a href="#星期一" class="headerlink" title="星期一"></a>星期一</h3><p>今天是3月15日，星期一天气晴。</p><figure class="highlight bash"><figcaption><span>$ apt-get intstall openssh-server</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure><p>$ apt-get intstall openssh-server<br>server ssh start<br>启动服务<br>xshell 连接linux 必备的软件包</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2021/03/14/hello-world/"/>
+      <url>/2021/03/14/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>
