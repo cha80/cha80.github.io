@@ -1,0 +1,268 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head> 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+   <title>cha80的github网站</title>
+   <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+     <link href="bootstrap-3.3.7-dist/css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+<script src="bootstrap-3.3.7-dist/js/jquery.min.js"></script>
+   <script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+	<script src="bootstrap-3.3.7-dist/js/moment.js"></script>
+	<script src="bootstrap-3.3.7-dist/js/browser.js"></script>
+	<script src="bootstrap-3.3.7-dist/js/three.min.js"></script>
+	  <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css" />
+<script src="bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.min.js"></script>
+ <script src="bootstrap-3.3.7-dist/js/star-rating.js" type="text/javascript"></script>
+<script src="bootstrap-3.3.7-dist/themes/krajee-svg/theme.js"></script>
+	<script src="bootstrap-3.3.7-dist/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+   <script src="bootstrap-3.3.7-dist/js/locales/lang.js"></script>
+	<link rel="stylesheet" href="bootstrap-3.3.7-dist/dist/photo-sphere-viewer.css"/>
+
+	 <script src="bootstrap-3.3.7-dist/dist/photo-sphere-viewer.js"></script> 
+   <link href="bootstrap-3.3.7-dist/themes/krajee-svg/theme.css" media="all" rel="stylesheet" type="text/css" />
+   <style>
+body{
+position: relative;
+-webkit-animation:mymove 4s infinite;
+background:linear-gradient(125deg,blue,red);
+
+background-size:200% 200%;
+background-repeat: no repeat;}
+@-webkit-keyframes mymove{
+0%{
+background-position:0% 0% ; }
+100%{
+background-position:100% 100%;
+}
+}
+
+    /* .main{
+       width:100%;
+        height:70%;
+       /* background:red;*/
+        
+      .left-menu{
+	      padding:0px;
+	      margin:0px;
+         width:30%;
+         height:65%;
+	   color:#000000;
+	   }
+          .right-content{
+        width: 70%;
+		  height:65%;
+    } */
+	   .main0{
+		   width:100%;
+		   height:15px;
+	   }
+	   .container{
+		   width:35%;
+			   height:15px;
+	   float:left;}
+	     #viewer {
+    width: 100vw;
+    height: 50vh;
+  }
+	   .btn_pos{
+	   witdth:65%;
+	   height:15px;}
+	   .github_1 p:first-letter{
+	   	font-size:3em;
+	   	color:gold;
+	   	vertical-align: middle;}
+   </style>
+   <script>
+
+	   
+      function test_show3(){
+         var show_1=document.getElementById("rate_2");
+         if(show_1.style.display=="none"){
+         show_1.style.display="block";
+            document.getElementById("webinfo_1").style.display="none";
+            document.getElementById("github_1").style.display="none";
+		 document.getElementById("day_note").style.display="none";
+         }
+    
+     
+      }
+         function test_show1(){
+            var show_2=document.getElementById("webinfo_1");
+            if(show_2.style.display=="none"){
+               show_2.style.display="block";
+               document.getElementById("rate_2").style.display="none";
+	     document.getElementById("day_note").style.display="none";
+	     document.getElementById("rate_2").style.display="none";}
+         }
+      function test_show(){
+         var   show_git=document.getElementById("github_1");
+         if(show_git.style.display=="none"){
+            show_git.style.display="block";
+            document.getElementById("webinfo_1").style.display="none";
+            document.getElementById("rate_2").style.display="none";
+		 document.getElementById("day_note").style.display="none";
+         }
+      }
+	     function test_show2(){
+		     var day_note=document.getElementById("day_note");
+		      if(day_note.style.display=="none"){
+            day_note.style.display="block";
+            document.getElementById("webinfo_1").style.display="none";
+            document.getElementById("rate_2").style.display="none";
+			      document.getElementById("github_1").style.display="none";
+		     }}
+	        $(function () {
+		     $("#datetimepicker1").datetimepicker({
+    	format: 'yyyy-mm-dd hh:ii',
+    	language:'zh-CN'
+});
+                $('#datetimepicker1').datetimepicker();
+            });
+	   // bootstrap日期控件
+   </script>
+   </head> 
+<body style=" ">
+	
+	<div class="main"" style="position:relative">  
+<!-- <div class="left-menu"> -->
+     <nav class="navbar navbar-inverse" style="">
+  <div class="container-fluid" >
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header"  >
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="title_web" style="">
+<a href="index.html"><h1 align="center"  style="color: white; padding:1;margin:0"> github小站</h1> </a></div>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="">
+      
+       
+      <ul class="nav navbar-nav navbar-right" >
+         
+        <li class="dropdown" style="">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">cha80 github<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+          <li>  <a href=" #webinfo_1" onclick="test_show1()"  >网站信息(杭州实拍全景）</a></li><br>
+<li role="presentation" ><a href="#sphy"  onclick="test_show()">GitHub</a></li><br>
+  
+  <li role="presentation"><a href="#day_note" onclick="test_show2()">每日日记(音乐)</a></li><br>
+  <li role="presentation"><a href="#rate_2" onclick="test_show3()" >网站评价</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+ 
+	   
+	 
+
+    <div class="right-content">
+     <div class="rate_2" style="display:none" id="rate_2">
+ <input id="input-id" type="number" class="rating" min=0 max=5 step=1 data-size="md" > 网站页面布局
+<input id="input-id" type="number" class="rating" min=0 max=5 step=1 data-size="md" >  网站内容评级
+<input id="input-id" type="number" class="rating" min=0 max=5 step=1 data-size="md" > 整体评价 <br>
+ <a class="btn btn-primary" href="" onclick="alert('感谢评价!')">提交</a></div>      <div class="form-group" style="width:180px">
+                <div class='input-group date' id='datetimepicker1' >
+	                    <input type='text' class="form-control" placeholder="日历" />
+
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>   </div> </div>
+       <div class="webinfo_1" style="display:block" id="webinfo_1">
+          
+                  <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> 本网站由cha80基于bootstrap开发,界面简洁，是本人的GitHub小站。<div id="viewer">
+	       </div><script>
+  var viewer = new PhotoSphereViewer.Viewer({
+    container: document.querySelector('#viewer'),
+    panorama: 'bootstrap-3.3.7-dist/img/PANO_20200715_160553.jpg'
+  });
+</script>
+	       <!--网站信息页 -->
+
+                   
+    </div>
+       <div class="github_1" style="display:none " id="github_1">
+         <p>github是一个全球性的代码托管平台 GitHub is how people build software
+We’re supporting a community where more than 50 million* people learn, share, and work together to build software.
+      </p> 
+       </div>
+	      	<div class="day_note" style="display: none " id="day_note" style="width:100%;"> <div class="day_note2" style=" display:flex;position: absolute ;color: white ;justify-content:center;font-size:15px ;padding:2px auto"> 
+<br>&nbsp;&nbsp; &nbsp;Just_A_Dream,Nelly-Ft-Shereen  <br>Coke_Studio 
+
+<div style="position: absolute ;margin:30% auto; margin-left:75px">	<audio src="bootstrap-3.3.7-dist/img/23.mp3" controls="">  </audio>
+		</div>	</div>
+		<div class="day_note1" > 
+<svg  xmlns="http://www.w3.org/2000/svg"   >
+  <rect  y="0" x="0" width="100%" height="100%" style="fill: transparent;stroke-width:1; stroke:blue">
+    <animate attributeName="ry" values="0;50;0"  attributeName="rx" values="0;50;0" dur="5s" repeatCount="indefinite" />
+  </rect>
+			</svg>
+			</div>
+</div>
+ 
+      </div>
+	  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="width:100%">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+	 
+  </ol>
+
+  <!-- Wrapper for slides bootstrap 图片轮播 -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="bootstrap-3.3.7-dist/img/pic1.jpg" alt="...">
+      <div class="carousel-caption">
+        ...
+      </div>
+    </div>
+    <div class="item">
+      <img src="bootstrap-3.3.7-dist/img/pic2.jpg" alt="...">
+      <div class="carousel-caption">
+        ...
+      </div>
+    </div>
+	    <div class="item">
+      <img src="bootstrap-3.3.7-dist/img/pic3.jpg" alt="...">
+      <div class="carousel-caption">
+        ...
+      </div>
+    </div>
+   
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+		   </div>
+	
+      
+			     <div class="btn_pos" style=" text-align:center;padding:0px">
+	<button type="button" class="btn btn-default btn-md" >
+	<span class="glyphicon glyphicon-user"></span> ©2021版权所有 cha80 by chen
+		 </button>
+               
+            </div>
+        
+        
+	
+		</body>
+</html>
