@@ -215,14 +215,17 @@ background-position:100% 100%;
 	const selectElement = document.querySelector(".mySelect");
 console.log(selectElement.value);  // 获取当前选中的值
     selectElement.addEventListener("change", function () {   const selectedValue = this.value;
-							  
-						console.log(selectedValue);	  
-							  })
- 
-  var viewer = new PhotoSphereViewer.Viewer({
+							   var viewer = new PhotoSphereViewer.Viewer({
     container: document.querySelector('#viewer'),
     panorama: 'bootstrap-3.3.7-dist/img/'+selectedValue+'.jpg'
   });
+						console.log(selectedValue);	  
+							  })
+ 
+  /*var viewer = new PhotoSphereViewer.Viewer({
+    container: document.querySelector('#viewer'),
+    panorama: 'bootstrap-3.3.7-dist/img/'+selectedValue+'.jpg'
+  });*/
 </script>
 	       <!--网站信息页 -->
 
