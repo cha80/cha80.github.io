@@ -212,7 +212,11 @@ background-position:100% 100%;
 	       </div>
 	       <script>
 		const selectElement = document.getElementById("mySelect");
-const selectedOption = selectElement.options[selectElement.selectedIndex]; 
+const selectedIndex = selectElement.selectedIndex;  // 获取选中的索引
+const selectedOption = selectElement.options[selectedIndex];  // 获取选中的 <option> 元素
+
+console.log(selectedOption.value);  // 获取选中的值
+console.log(selectedOption.text);   // 获取选中的文本内容
   var viewer = new PhotoSphereViewer.Viewer({
     container: document.querySelector('#viewer'),
     panorama: 'bootstrap-3.3.7-dist/img/'+ selectedOption +'.jpg'
