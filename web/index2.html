@@ -211,6 +211,7 @@ background-position:100% 100%;
 </select><div id="viewer">
 	       </div>
 	       <script>
+		       document.getElementById("mySelect").addEventListener("change", function () {
 	const selectElement = document.querySelector(".mySelect");
 console.log(selectElement.value);  // 获取当前选中的值
 
@@ -218,7 +219,7 @@ console.log(selectElement.value);  // 获取当前选中的值
   var viewer = new PhotoSphereViewer.Viewer({
     container: document.querySelector('#viewer'),
     panorama: 'bootstrap-3.3.7-dist/img/'+selectElement.value+'.jpg'
-  });
+  });}
 </script>
 	       <!--网站信息页 -->
 
