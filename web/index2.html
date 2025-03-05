@@ -215,7 +215,7 @@ background-position:100% 100%;
 	const selectElement = document.querySelector(".mySelect");
 console.log(selectElement.value);  // 获取当前选中的值
     selectElement.addEventListener("change", function () {   const selectedValue = this.value;
-							 setTimeout(  function () {
+							 setInterval(  function () {
  
 var viewer = new PhotoSphereViewer.Viewer({
     container: document.querySelector('#viewer'),
