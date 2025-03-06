@@ -216,7 +216,7 @@ background-position:100% 100%;
 console.log(selectElement.value);  // 获取当前选中的值
     selectElement.addEventListener("change", function () {   const selectedValue = this.value;
 							  
-							document.getElementByClassName("btn_pos").style.display="none";  
+							document.getElementsByClassName("btn_pos").style.display="none";  
 							document.getElementById("carousel-example-generic").style.display="none";  
 							  
 							const pop=document.getElementById("viewer").firstElementChild
