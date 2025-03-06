@@ -218,7 +218,9 @@ console.log(selectElement.value);  // 获取当前选中的值
 							  
 							document.getElementByClassName("btn_pos").style.display="none";  
 							document.getElementById("carousel-example-generic").style.display="none";  
-							document.getElementById("viewer").firstElementChild.style.display="none";
+							  
+							const pop=document.getElementById("viewer").firstElementChild
+							  if(pop){pop.style.display="none";}
 							  setTimeout(  function () {
  
 var viewer = new PhotoSphereViewer.Viewer({
