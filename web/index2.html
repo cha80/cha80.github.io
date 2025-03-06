@@ -216,7 +216,7 @@ background-position:100% 100%;
 console.log(selectElement.value);  // 获取当前选中的值
     selectElement.addEventListener("change", function () {   const selectedValue = this.value;
 							  
-							document.getElementsByClassName("btn_pos").style.display="none";  
+							document.getElementById("postn").style.display="none";  
 							document.getElementById("carousel-example-generic").style.display="none";  
 							  
 							const pop=document.getElementById("viewer").firstElementChild
@@ -303,7 +303,7 @@ We’re supporting a community where more than 50 million* people learn, share, 
 		   </div>
 	
       
-			     <div class="btn_pos" style=" text-align:center;padding:0px">
+			     <div class="btn_pos" id="postn" style=" text-align:center;padding:0px">
 	<button type="button" class="btn btn-default btn-md" >
 	<span class="glyphicon glyphicon-user"></span> ©2021版权所有 cha80 by chen
 		 </button>
